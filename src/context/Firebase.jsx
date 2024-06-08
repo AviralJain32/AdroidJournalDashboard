@@ -24,20 +24,36 @@ export const useFirebase=()=>useContext(FirebaseContext)
 
 export const FirebaseProvider=(props)=>{
     const [Submissions, setSubmissions] = useState([]);
-
+    const [journals, setJournals] = useState([])
     useEffect(() => {
         try {
             const SubmissionsFetching = async () => {
               const Submissionsdocs = await getDocs(collection(firestore, 'paperSubmissions'));
               const SubmissionsObjects = Submissionsdocs.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
           
-
               setSubmissions(SubmissionsObjects);
             };
             SubmissionsFetching();
 
         } catch (error) {
             console.log("Error while fetching Submissions :: ",error);
+        }
+      
+      }, []);
+
+      useEffect(() => {
+        try {
+            const JournalFetching = async () => {
+              const Journaldocs = await getDocs(collection(firestore, 'journals'));
+              const JournalObjects = Journaldocs.docs.map((doc) => ({ id: doc.id, shortForm: doc.data().shortForm,
+                title: doc.data().title }));
+          
+              setJournals(JournalObjects);
+            };
+            JournalFetching();
+
+        } catch (error) {
+            console.log("Error while fetching Journals :: ",error);
         }
       
       }, []);
@@ -59,7 +75,7 @@ export const FirebaseProvider=(props)=>{
         }
   }
     return (
-        <FirebaseContext.Provider value={{Submissions,downloadManuscript}}>
+        <FirebaseContext.Provider value={{Submissions,downloadManuscript,journals}}>
             {props.children}
         </FirebaseContext.Provider>
     )
