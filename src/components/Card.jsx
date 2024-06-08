@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardHeader, CardBody, Stack, Heading, Box, StackDivider, Text, Link, Badge, Button } from '@chakra-ui/react'
 import { useFirebase } from '../context/Firebase'
 
-const CustomCard = ({ abstract, email, journal, manuscriptsDocURL, name, title, date }) => {
+const CustomCard = ({ abstract, email, journal, manuscriptsDocURL, name, title, date,paperID }) => {
     const firebase=useFirebase();
     const downloadManuScript=(manuscriptsDocURL,title)=>{
         firebase.downloadManuscript(manuscriptsDocURL,title)
@@ -17,6 +17,12 @@ const CustomCard = ({ abstract, email, journal, manuscriptsDocURL, name, title, 
 
         <CardBody p={6}>
           <Stack divider={<StackDivider borderColor="gray.200" />} spacing={6}>
+          <Box>
+              <Heading size='md'>Paper ID</Heading>
+              <Text pt={2} fontSize='lg'>
+                {paperID}
+              </Text>
+            </Box>
             <Box>
               <Heading size='md'>Author</Heading>
               <Text pt={2} fontSize='lg'>

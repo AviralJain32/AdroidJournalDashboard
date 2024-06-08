@@ -11,16 +11,7 @@ const App = () => {
           Adroid Publications Dashboard
         </Heading>
         <Spacer />
-        {/* <Text fontSize="lg" color="gray.600">
-          Welcome, [User Name]
-        </Text> */}
       </Flex>
-
-      {/* <Heading as='h2' size='2xl' mb={8} textAlign="center">
-        Submissions
-      </Heading> */}
-
-
       <Outlet/>
 
     </Container>

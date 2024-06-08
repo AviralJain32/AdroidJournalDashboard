@@ -12,7 +12,7 @@ const ButtonsPage = () => {
       <Container maxW="container.xl">
         <Stack direction="column" spacing="24px" align="center">
           {journals?.map((journal, index) => (
-            <Box key={index} w="50%" h="12rem">
+            <Box key={index} w={["90%","90%","60%"]} h="10rem">
               <Button colorScheme="red" w="100%" h="100%" sx={{"textWrap":"wrap"}} size={"lg"} onClick={()=>navigate(`/journal/${journal.shortForm}`)}>
                 {journal.shortForm} ({journal.title})
               </Button>
