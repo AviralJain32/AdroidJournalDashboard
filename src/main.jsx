@@ -1,17 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, Tabs } from '@chakra-ui/react'
 import App from './App.jsx'
 import { FirebaseProvider } from './context/Firebase.jsx'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import ButtonsPage from './pages/ButtonsPage.jsx'
 import SubmissionJournalPage from './pages/SubmissionJournalPage.jsx'
+import TabsOfDashBoard from './pages/TabsOfDashBoard.jsx'
 
 const router=createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>}>
       <Route index element={<ButtonsPage/>} />  
-        <Route path='/journal/:id' element={<SubmissionJournalPage/>}/>
+        <Route path='/journal/:id' element={<TabsOfDashBoard/>}/>
        {/*<Route path='/aboutus' element={<AboutUsPage/>}/>
       <Route path='/contactus' element={<ContactUsPage/>}/>
       <Route path='/journals' element={<JournalsPage/>}/>
