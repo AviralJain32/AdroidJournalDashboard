@@ -460,6 +460,26 @@ const SubmitPaperForm = () => {
                     <FormHelperText>Enter Citation Information Like : ACM $$ info $$ ACS $$ info</FormHelperText>
                   </FormControl>
 
+                  {/* Pages */}
+                  <FormControl isInvalid={errors.papers?.[index]?.pages}>
+                    <FormLabel mt={1} fontSize="lg" color="black">Pages</FormLabel>
+                    <Textarea 
+                      focusBorderColor="teal.300" 
+                      placeholder="Enter Pages" 
+                      bg="white" 
+                      color="black" 
+                      fontSize="md" 
+                      {...register(`papers.${index}.pages`, {
+                        // required: 'References is a required field',
+                        // minLength: { value: 4, message: 'Please Enter Valid References' },
+                      })} 
+                    />
+                    {errors.papers?.[index]?.pages && (
+                      <FormErrorMessage>{errors.papers[index].pages.message}</FormErrorMessage>
+                    )}
+                    <FormHelperText>Enter pp</FormHelperText>
+                  </FormControl>
+
                   <Button mt={4} colorScheme="red" onClick={() => remove(index)}>
                     Remove Paper
                   </Button>
