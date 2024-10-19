@@ -13,10 +13,6 @@ const router=createBrowserRouter(
     <Route path='/' element={<App/>}>
       <Route index element={<ButtonsPage/>} />  
         <Route path='/journal/:id' element={<TabsOfDashBoard/>}/>
-       {/*<Route path='/aboutus' element={<AboutUsPage/>}/>
-      <Route path='/contactus' element={<ContactUsPage/>}/>
-      <Route path='/journals' element={<JournalsPage/>}/>
-      <Route path='/submitform' element={<SubmitPaperForm/>}/> */}
     </Route>
   )
 )

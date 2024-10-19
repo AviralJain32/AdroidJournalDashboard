@@ -9,12 +9,18 @@ import {
   StackDivider, 
   Text, 
   Button, 
-  Badge 
+  Badge, 
+  useToast
 } from '@chakra-ui/react';
 // import { DownloadIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import { useFirebase } from '../context/Firebase';
+// import { sendCopyrightMail } from '../helpers/sendCopyrightMail';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const CustomCard = ({ abstract, email, journal, manuscriptsDocURL, name, title, date, paperID }) => {
+  const params=useParams()
+  const toast=useToast()
   const firebase = useFirebase();
   const downloadManuscript = (manuscriptsDocURL, title) => {
     firebase.downloadManuscript(manuscriptsDocURL, title);
@@ -26,11 +32,37 @@ const CustomCard = ({ abstract, email, journal, manuscriptsDocURL, name, title, 
     setShowFullText(!showFullText);
   };
 
+  const sendCopyrightMail=async(name,paperID,title,params,email)=>{
+    console.log("in sendCopyrightMail"+ email)
+    const jounralID=params.id
+    console.log(jounralID)
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/sendCopyrightFormEmailFromAdminPanel`,{name,paperID,title,jounralID,email});
+      toast({
+        title: `We have send the link for the publishing agreement to the ${name} with paper id ${paperID}`,
+        position: "top",
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+    });
+} catch (error) {
+    console.error("Error submitting agreement: ", error);
+    toast({
+        title: 'There was an issue sending the mail to the user',
+        position: "top",
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+    });
+}
+  }
+
   return (
     <Box m={4} _hover={{ boxShadow: 'lg' }} transition="all 0.2s">
       <Card bg="white" shadow="xl" borderRadius="lg" overflow="hidden" border="1px" borderColor="gray.200">
-        <CardHeader bg="red.500" color="white" p={6}>
-          <Heading size={[,"lg",'md']} fontFamily={"sans-serif"}>{title}</Heading>
+        <CardHeader display={"flex"} gap={'1'} justifyContent={"space-between"} bg="red.500" color="white" p={6}>
+          <Heading size={[,"lg",'md']} maxWidth={"550"}  fontFamily={"sans-serif"}>{title}</Heading>
+          <Button onClick={()=>sendCopyrightMail(name,paperID,title,params,email)}>Send Mail</Button>
           {/* <Text fontSize="lg" mt={2}>{journal}</Text> */}
         </CardHeader>
 

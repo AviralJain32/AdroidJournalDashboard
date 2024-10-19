@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
-        <Container maxW="container.xl" py={8}>
+        <Container maxW={"90vw"} py={8}>
       {/* Header */}
       <Flex alignItems="center" mb={8} py={4} >
         <Avatar size="lg" name="Adroid Publications" mr={4} />
