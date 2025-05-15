@@ -7,12 +7,14 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import ButtonsPage from './pages/ButtonsPage.jsx'
 import SubmissionJournalPage from './pages/SubmissionJournalPage.jsx'
 import TabsOfDashBoard from './pages/TabsOfDashBoard.jsx'
+import AdroidProgramForm from './pages/AdroidFoundationNewsSubmissionPage.jsx'
 
 const router=createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>}>
       <Route index element={<ButtonsPage/>} />  
-        <Route path='/journal/:id' element={<TabsOfDashBoard/>}/>
+      <Route path='/journal/:id' element={<TabsOfDashBoard/>}/>
+      <Route path='/adroidFoundation' element={<AdroidProgramForm />}/>
     </Route>
   )
 )

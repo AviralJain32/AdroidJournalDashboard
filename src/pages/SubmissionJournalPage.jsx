@@ -1,5 +1,5 @@
 import { Heading, WrapItem, Container, Grid, GridItem, Stack, Box, Flex, Spacer, Avatar, Text } from "@chakra-ui/react";
-import Card from "../components/Card";
+import Card from "../components/card";
 import { useState, useEffect } from "react";
 import { useFirebase } from "../context/Firebase";
 import { useParams } from "react-router-dom";
